@@ -2,7 +2,8 @@
 # Napisz generator kodów pocztowych, który przyjmuje 2 stringi: 
 # "79-900" i "80-155" i zwraca listę kodów pomiędzy nimi.
 import re
-def getCodesBetween(a, b):
+
+def generateCodesBetween(a, b):
     codesList = []
     begin = int(a[:2])
     end = int(b[:2])
@@ -10,8 +11,8 @@ def getCodesBetween(a, b):
         j=int(a[3:6])
         for i in range(begin, end):
             while j <= 999:
-                codesList.append(str(i)+"-"+str(j).zfill(3))
                 j += 1
+                codesList.append(str(i)+"-"+str(j).zfill(3))
             j=0
         i=end
         for j in range(0, int(b[3:6])):
@@ -23,12 +24,26 @@ def getCodesBetween(a, b):
         j=int(b[3:6])
         for i in range(end, begin):
             while j <= 999:
-                codesList.append(str(i)+"-"+str(j).zfill(3))
                 j += 1
+                codesList.append(str(i)+"-"+str(j).zfill(3))
             j=0
         i=begin
         for j in range(0, int(a[3:6])):
             codesList.append(str(i)+"-"+str(j).zfill(3))
     return codesList
 
-print(getCodesBetween("79-900", "78-155"))
+print(generateCodesBetween("79-900", "80-155"))
+
+
+# def fillList(begin, end, sufA, sufB):
+#     codesList = []
+#     j = sufA
+#     for i in range(begin, end):
+#         while j <= 999:
+#             j += 1
+#             codesList.append(str(i)+"-"+str(j).zfill(3))
+#         j=0
+#         i=end
+#         for j in range(0, int(sufB)):
+#             codesList.append(str(i)+"-"+str(j).zfill(3))
+#     return codesList
